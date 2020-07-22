@@ -1,14 +1,20 @@
 #include <iostream>
 using namespace std;
-int LastIndexOfNumber(int input[], int n, int number, int start, int &k, int output[])
+void LastIndexOfNumberHelper(int input[], int n, int number, int start, int &k, int output[])
 {
     if (start == n)
-        return -1;
+        return;
     if (input[start] == number)
     {
         output[k++] = start;
     }
-    return LastIndexOfNumber(input, n, number, start + 1, k, output);
+    LastIndexOfNumberHelper(input, n, number, start + 1, k, output);
+}
+int LastIndexOfNumber(int input[], int n, int number, int output[])
+{
+    int k = 0;
+    (input, n, number, 0, k, output);
+    return k;
 }
 int main()
 {
@@ -23,9 +29,8 @@ int main()
     }
     int number;
     cin >> number;
-    int k = 0;
-    int r = LastIndexOfNumber(input, n, number, 0, k, output);
-    for (int i = 0; i < k; i++)
+    int r = LastIndexOfNumber(input, n, number, output);
+    for (int i = 0; i < r; i++)
     {
         cout << output[i] << " ";
     }
