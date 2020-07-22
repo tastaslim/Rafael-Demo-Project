@@ -9,9 +9,9 @@ void Subsequences(string input, string output)
         cout << output << endl;
         return;
     }
-    string helper = input.substr(1);
-    Subsequences(helper, output);
-    Subsequences(helper, output + input[0]);
+    string next = input.substr(1);
+    Subsequences(next, output);
+    Subsequences(next, output + input[0]);
 }
 int main()
 {

@@ -9,8 +9,8 @@ int Subsequences(string input, string output[])
         output[0] = "";
         return 1;
     }
-    string helper = input.substr(1);
-    int k = Subsequences(helper, output);
+    string next = input.substr(1);
+    int k = Subsequences(next, output);
     for (int i = 0; i < k; i++)
     {
         output[i + k] = input[0] + output[i];
