@@ -74,6 +74,8 @@ int keypad(int num, string output[])
     int recursionPart = num / 10;
     int recursionOutput = keypad(recursionPart, output);
     int l = recursionOutput;
+    // Make lastString.length()-1 copies of output coming from recursion.
+    // Because we have already One copy which is output of recursion itself
     for (int i = 0; i < lastString.length() - 1; i++)
     {
         for (int j = 0; j < recursionOutput; j++)
