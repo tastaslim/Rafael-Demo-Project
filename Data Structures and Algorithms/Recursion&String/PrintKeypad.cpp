@@ -45,11 +45,11 @@ void keypad(int num, string output)
         return;
     }
     int last = num % 10;
+
     string lastStr = helper(last);
     int len = lastStr.length();
     for (int i = 0; i < len; i++)
     {
-        // keypad(num / 10, output);
         keypad(num / 10, lastStr[i] + output);
     }
 }
