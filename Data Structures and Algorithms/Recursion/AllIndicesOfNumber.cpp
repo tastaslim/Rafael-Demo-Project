@@ -13,7 +13,7 @@ void LastIndexOfNumberHelper(int input[], int n, int number, int start, int &k, 
 int LastIndexOfNumber(int input[], int n, int number, int output[])
 {
     int k = 0;
-    (input, n, number, 0, k, output);
+    LastIndexOfNumberHelper(input, n, number, 0, k, output);
     return k;
 }
 int main()
