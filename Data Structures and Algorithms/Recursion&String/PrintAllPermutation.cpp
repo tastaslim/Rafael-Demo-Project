@@ -11,21 +11,16 @@ void printPermutations(string input, string output)
     }
     for (int i = 0; input[i] != '\0'; i++)
     {
-        string m = input.substr(0, i);
-        string n = input.substr(i + 1);
-        printPermutations(m + n, output + input[i]);
+        string a = input.substr(0, i);
+        string b = input.substr(i + 1);
+        printPermutations(a + b, output + input[i]);
     }
-}
-
-void printPermutations(string input)
-{
-    printPermutations(input, "");
 }
 
 int main()
 {
     string input;
     cin >> input;
-    printPermutations(input);
+    printPermutations(input, "");
     return 0;
 }

@@ -2,26 +2,27 @@
 #include <string>
 using namespace std;
 
-int printPermutations(string input, string output[])
+int returnPermutations(string input, string output[])
 {
     if (input[0] == '\0')
     {
         output[0] = "";
         return 1;
     }
-    int k = 0;
-    string output1[1000];
+    string arr[1000];
+    int l = 0;
     for (int i = 0; input[i] != '\0'; i++)
     {
-        string m = input.substr(0, i);
-        string n = input.substr(i + 1);
-        int ans = printPermutations(m + n, output1);
-        for (int j = 0; j < ans; j++)
+        string a = input.substr(0, i);
+        string b = input.substr(i + 1);
+        int k = returnPermutations(a + b, arr);
+        for (int j = 0; j < k; j++)
         {
-            output[k++] = input[i] + output1[j];
+            output[l] = input[i] + arr[j];
+            l = l + 1;
         }
     }
-    return k;
+    return l;
 }
 
 int main()
@@ -29,7 +30,7 @@ int main()
     string input;
     cin >> input;
     string output[1000];
-    int ans = printPermutations(input, output);
+    int ans = returnPermutations(input, output);
     for (int i = 0; i < ans; i++)
     {
         cout << output[i] << endl;
