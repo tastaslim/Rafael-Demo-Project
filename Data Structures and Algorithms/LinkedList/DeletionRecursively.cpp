@@ -37,24 +37,46 @@ node *TakeInput()
     return head;
 }
 
-// Printing Ith node of LinkedList
-node *IthNode(node *head, int i)
+// Deleting new node at Ith position of LinkedList
+node *DeleteAtIthNode(node *head, int i)
+{
+    if (head == NULL)
+    {
+        if (i == 0)
+        {
+            node *temp = head;
+            head = head->next;
+            delete temp;
+        }
+        return head;
+    }
+    if (i == 0)
+    {
+
+        node *temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+    head->next = DeleteAtIthNode(head->next, i - 1);
+    return head;
+}
+void print(node *head)
 {
     node *temp = head;
-    int count = 0;
-    while (temp != NULL && count < i)
+    while (temp != NULL)
     {
+        cout << temp->data << " ";
         temp = temp->next;
-        count = count + 1;
     }
-    return temp;
 }
+
 int main()
 {
-    node *input = TakeInput();
+    node *head = TakeInput();
     int i;
     cin >> i;
-    node *k = IthNode(input, i);
-    cout << k->data;
+    head = DeleteAtIthNode(head, i);
+    print(head);
     return 0;
 }
