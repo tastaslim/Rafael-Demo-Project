@@ -51,6 +51,7 @@ node *IthNode(node *head, int i)
     {
         return temp;
     }
+    return NULL;
 }
 int main()
 {
