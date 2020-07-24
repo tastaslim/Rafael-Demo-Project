@@ -13,11 +13,21 @@ void helper(int *input, int size, int *output, int m)
 {
     if (size == 0)
     {
+        int curr_sum = 0;
         for (int i = 0; i < m; i++)
         {
-            cout << output[i] << " ";
+            curr_sum += output[i];
+            // cout << output[i] << " ";
         }
-        cout << endl;
+        if (sum == curr_sum)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                cout << output[i] << " ";
+            }
+
+            cout << endl;
+        }
         return;
     }
     helper(input + 1, size - 1, output, m);
@@ -37,27 +47,36 @@ void printSubsetsOfArray(int input[], int size)
 */
 
 //Approach 2 -----> Without any Extra Space
-void printSubsetsOfArray(int input[], int size, int output[], int m)
+void printSubsetsOfArray(int input[], int size, int output[], int m, int sum)
 {
     if (size == 0)
     {
-        int sum = 0;
+        int curr_sum = 0;
         for (int i = 0; i < m; i++)
         {
-            cout << output[i] << " ";
+            curr_sum += output[i];
+            // cout << output[i] << " ";
         }
-        cout << endl;
+        if (sum == curr_sum)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                cout << output[i] << " ";
+            }
+
+            cout << endl;
+        }
         return;
     }
-    printSubsetsOfArray(input + 1, size - 1, output, m);
+    printSubsetsOfArray(input + 1, size - 1, output, m, sum);
     output[m] = input[0];
-    printSubsetsOfArray(input + 1, size - 1, output, m + 1);
+    printSubsetsOfArray(input + 1, size - 1, output, m + 1, sum);
 }
 
-void printSubsetsOfArray(int input[], int size)
+void printSubsetsOfArray(int input[], int size, int sum)
 {
     int output[1000000];
-    printSubsetsOfArray(input, size, output, 0);
+    printSubsetsOfArray(input, size, output, 0, sum);
 }
 int main()
 {
@@ -65,5 +84,8 @@ int main()
     cin >> length;
     for (int i = 0; i < length; i++)
         cin >> input[i];
-    printSubsetsOfArray(input, length);
+    int sum;
+    cin >> sum;
+    printSubsetsOfArray(input, length, sum);
+    return 0;
 }
