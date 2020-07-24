@@ -8,7 +8,7 @@ to the stairs. You need to return number of possible ways W.
 
 #include <bits/stdc++.h>
 using namespace std;
-//Using Brute Force
+//Using Brute Force O(3^n)
 
 /*int PossibleWays(int n)
 {
@@ -23,7 +23,7 @@ using namespace std;
     return PossibleWays(n - 1) + PossibleWays(n - 2) + PossibleWays(n - 3);
 }*/
 
-//Using Dynamic Programming
+//Using Dynamic Programming O(n)
 long long int PossibleWays(int n)
 {
     int arr[100000];
