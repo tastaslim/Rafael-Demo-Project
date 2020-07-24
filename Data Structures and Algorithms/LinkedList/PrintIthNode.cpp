@@ -51,6 +51,7 @@ node *IthNode(node *head, int i)
     {
         return temp;
     }
+    //To show that we have reached end of List
     return NULL;
 }
 int main()
