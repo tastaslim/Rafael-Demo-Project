@@ -17,6 +17,13 @@ int Subsequences(string input, string output[])
     }
     return 2 * k;
 }
+int Subsequences(string input)
+{
+    string output[10000];
+    int k = Subsequences(input, output);
+    return k;
+}
+
 int main()
 {
     string input;
