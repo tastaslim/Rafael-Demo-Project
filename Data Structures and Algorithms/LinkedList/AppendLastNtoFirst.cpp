@@ -53,6 +53,10 @@ int length(node *head)
 // Append last N nodes to first in LinkedList
 node *AppendLastnNodesToFirst(node *head, int len)
 {
+    if (head == NULL)
+        return NULL;
+    if (len == 0)
+        return head;
     int k1 = length(head);
     if (len > k1)
     {

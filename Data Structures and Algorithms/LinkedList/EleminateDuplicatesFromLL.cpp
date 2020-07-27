@@ -36,6 +36,7 @@ node *TakeInput()
     }
     return head;
 }
+//Remove Consecutive Duplicates in Linked List.
 node *removeDuplicates(node *head)
 {
     if (head == NULL)
