@@ -42,12 +42,6 @@ node *DeleteAtIthNode(node *head, int i)
 {
     if (head == NULL)
     {
-        if (i == 0)
-        {
-            node *temp = head;
-            head = head->next;
-            delete temp;
-        }
         return head;
     }
     if (i == 0)
@@ -56,9 +50,11 @@ node *DeleteAtIthNode(node *head, int i)
         node *temp = head;
         head = head->next;
         delete temp;
-        return head;
     }
-    head->next = DeleteAtIthNode(head->next, i - 1);
+    else
+    {
+        head->next = DeleteAtIthNode(head->next, i - 1);
+    }
     return head;
 }
 void print(node *head)

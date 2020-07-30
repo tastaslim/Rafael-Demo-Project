@@ -37,27 +37,25 @@ node *TakeInput()
     return head;
 }
 
-//Recursive Approach---> Find a node in LinkedList
-int FindNode(node *head, int start, int data)
+node *MidPoint(node *head)
 {
     if (head == NULL)
     {
-        return -1;
+        return NULL;
     }
-    if (head->data == data)
+    node *slow = head, *fast = head;
+    while (fast != NULL && fast->next != NULL)
     {
-        return start;
+        fast = fast->next->next;
+        slow = slow->next;
     }
-    int k = FindNode(head->next, start + 1, data);
-    return k;
+    return slow;
 }
 
 int main()
 {
     node *head = TakeInput();
-    int i;
-    cin >> i;
-    int k = FindNode(head, 0, i);
-    cout << k;
+    node *mid = MidPoint(head);
+    cout << mid->data;
     return 0;
 }

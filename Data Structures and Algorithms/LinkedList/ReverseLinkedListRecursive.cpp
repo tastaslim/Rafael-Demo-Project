@@ -37,27 +37,34 @@ node *TakeInput()
     return head;
 }
 
-//Recursive Approach---> Find a node in LinkedList
-int FindNode(node *head, int start, int data)
+// Reversing LinkedList
+node *ReverseLinkedList(node *head)
 {
-    if (head == NULL)
+    if (head->next == NULL)
     {
-        return -1;
+        return head;
     }
-    if (head->data == data)
+    node *temp = ReverseLinkedList(head->next);
+    node *temp1 = head->next;
+    temp1->next = head;
+    head->next = NULL;
+    head = temp;
+    return head;
+}
+void print(node *head)
+{
+    node *temp = head;
+    while (temp != NULL)
     {
-        return start;
+        cout << temp->data << " ";
+        temp = temp->next;
     }
-    int k = FindNode(head->next, start + 1, data);
-    return k;
 }
 
 int main()
 {
     node *head = TakeInput();
-    int i;
-    cin >> i;
-    int k = FindNode(head, 0, i);
-    cout << k;
+    head = ReverseLinkedList(head);
+    print(head);
     return 0;
 }
