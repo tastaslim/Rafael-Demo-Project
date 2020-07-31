@@ -40,10 +40,6 @@ node *TakeInput()
 // Merging Two Sorted LinkedList
 node *MergeTwoSortedLL(node *head1, node *head2)
 {
-    if (head1 == NULL && head2 == NULL)
-    {
-        return NULL;
-    }
     if (head1 == NULL)
     {
         return head2;

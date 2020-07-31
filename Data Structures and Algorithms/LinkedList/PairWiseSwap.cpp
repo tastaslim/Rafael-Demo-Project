@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 //Take Input Code
@@ -37,25 +37,35 @@ node *TakeInput()
     return head;
 }
 
-node *MidPoint(node *head)
+node *pairWiseSwap(node *head)
 {
-    if (head == NULL)
+    node *temp = head;
+    node *h = head->next;
+    while (temp->next != NULL)
     {
-        return NULL;
+        swap(temp->data, h->data);
+        if (temp->next == NULL || h->next == NULL)
+            break;
+        temp = h->next;
+        h = temp->next;
     }
-    node *slow = head, *fast = head->next;
-    while (fast != NULL && fast->next != NULL)
+    return head;
+}
+
+void print(node *head)
+{
+    node *temp = head;
+    while (temp != NULL)
     {
-        fast = fast->next->next;
-        slow = slow->next;
+        cout << temp->data << " ";
+        temp = temp->next;
     }
-    return slow;
 }
 
 int main()
 {
     node *head = TakeInput();
-    node *mid = MidPoint(head);
-    cout << mid->data;
+    head = pairWiseSwap(head);
+    print(head);
     return 0;
 }

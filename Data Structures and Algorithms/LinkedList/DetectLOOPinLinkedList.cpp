@@ -13,6 +13,7 @@ public:
         this->next = NULL;
     }
 };
+
 node *TakeInput()
 {
     int value;
@@ -37,25 +38,48 @@ node *TakeInput()
     return head;
 }
 
-node *MidPoint(node *head)
+int countNodes(node *n)
 {
-    if (head == NULL)
+    int res = 1;
+    node *temp = n;
+    while (temp->next != n)
     {
-        return NULL;
+        res++;
+        temp = temp->next;
     }
-    node *slow = head, *fast = head->next;
-    while (fast != NULL && fast->next != NULL)
+    return res;
+}
+bool DetectLoop(node *head)
+{
+    node *slow = head;
+    node *fast = head;
+    int ans = 0;
+    while (slow && fast && fast->next)
     {
-        fast = fast->next->next;
         slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast)
+        {
+            ans = countNodes(slow);
+            break;
+        }
     }
-    return slow;
+    cout << ans << endl;
+    return false;
 }
 
 int main()
 {
     node *head = TakeInput();
-    node *mid = MidPoint(head);
-    cout << mid->data;
+    bool ans = DetectLoop(head);
+    if (ans)
+    {
+        cout << "Loop Found";
+    }
+    else
+    {
+        cout << "Loop Not found";
+    }
+
     return 0;
 }

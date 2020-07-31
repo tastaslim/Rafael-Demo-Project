@@ -40,10 +40,6 @@ node *TakeInput()
 // Merging Two Sorted LinkedList
 node *MergeTwoSortedLL(node *head1, node *head2)
 {
-    if (head1 == NULL && head2 == NULL)
-    {
-        return NULL;
-    }
     if (head1 == NULL)
     {
         return head2;
@@ -111,7 +107,7 @@ node *MidPoint(node *head)
     {
         return NULL;
     }
-    node *slow = head, *fast = head;
+    node *slow = head, *fast = head->next;
     while (fast != NULL && fast->next != NULL)
     {
         fast = fast->next->next;

@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 //Take Input Code
@@ -37,25 +37,26 @@ node *TakeInput()
     return head;
 }
 
-node *MidPoint(node *head)
+node *Intersection(node *head1, node *head2)
 {
-    if (head == NULL)
+    node *temp1 = head1, *temp2 = head2;
+}
+
+void print(node *head)
+{
+    node *temp = head;
+    while (temp != NULL)
     {
-        return NULL;
+        cout << temp->data << " ";
+        temp = temp->next;
     }
-    node *slow = head, *fast = head->next;
-    while (fast != NULL && fast->next != NULL)
-    {
-        fast = fast->next->next;
-        slow = slow->next;
-    }
-    return slow;
 }
 
 int main()
 {
-    node *head = TakeInput();
-    node *mid = MidPoint(head);
-    cout << mid->data;
+    node *head1 = TakeInput();
+    node *head2 = TakeInput();
+    node *ans = Intersection(head1, head2);
+    print(ans);
     return 0;
 }
