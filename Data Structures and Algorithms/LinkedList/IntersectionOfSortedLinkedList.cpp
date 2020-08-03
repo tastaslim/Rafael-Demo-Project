@@ -40,6 +40,37 @@ node *TakeInput()
 node *Intersection(node *head1, node *head2)
 {
     node *temp1 = head1, *temp2 = head2;
+    node *ansH = NULL, *ansT = NULL;
+
+    while (temp1 != NULL && temp2 != NULL)
+    {
+        if (temp1->data > temp2->data)
+        {
+            temp2 = temp2->next;
+        }
+        else if (temp2->data > temp1->data)
+        {
+            temp1 = temp1->next;
+        }
+        else
+        {
+            if (ansH == NULL)
+            {
+                ansH = temp1;
+                ansT = temp1;
+            }
+            else
+            {
+                ansT->next = temp1;
+                ansT = ansT->next;
+            }
+
+            temp1 = temp1->next;
+            temp2 = temp2->next;
+        }
+    }
+    ansT->next = NULL;
+    return ansH;
 }
 
 void print(node *head)

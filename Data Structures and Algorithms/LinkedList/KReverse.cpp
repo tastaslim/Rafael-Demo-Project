@@ -13,7 +13,6 @@ public:
         this->next = NULL;
     }
 };
-
 node *TakeInput()
 {
     int value;
@@ -38,48 +37,44 @@ node *TakeInput()
     return head;
 }
 
-int countNodes(node *n)
+// Reversing K LinkedList
+node *kReverse(node *head, int k)
 {
-    int res = 1;
-    node *temp = n;
-    while (temp->next != n)
+    node *temp = head;
+    int count = 0;
+    node *ne = NULL;
+    node *prev = NULL;
+    while (temp != NULL && count < k)
     {
-        res++;
+        ne = temp->next;
+        temp->next = prev;
+        prev = temp;
+        temp = ne;
+        count++;
+    }
+    if (ne != NULL)
+    {
+        head->next = kReverse(ne, k);
+    }
+    head = prev;
+    return head;
+}
+void print(node *head)
+{
+    node *temp = head;
+    while (temp != NULL)
+    {
+        cout << temp->data << " ";
         temp = temp->next;
     }
-    return res;
-}
-bool DetectLoop(node *head)
-{
-    node *slow = head;
-    node *fast = head->next;
-    int ans = 0;
-    while (slow && fast && fast->next)
-    {
-        slow = slow->next;
-        fast = fast->next->next;
-        if (slow == fast)
-        {
-            ans = countNodes(slow);
-            break;
-        }
-    }
-    cout << ans << endl;
-    return false;
 }
 
 int main()
 {
     node *head = TakeInput();
-    bool ans = DetectLoop(head);
-    if (ans)
-    {
-        cout << "Loop Found";
-    }
-    else
-    {
-        cout << "Loop Not found";
-    }
-
+    int k;
+    cin >> k;
+    node *head1 = kReverse(head, k);
+    print(head1);
     return 0;
 }
