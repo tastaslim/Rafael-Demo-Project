@@ -40,14 +40,6 @@ node *TakeInput()
 // Merging Two Sorted LinkedList
 node *MergeTwoSortedLL(node *head1, node *head2)
 {
-    if (head1 == NULL)
-    {
-        return head2;
-    }
-    if (head2 == NULL)
-    {
-        return head1;
-    }
     node *outputHead = NULL;
     node *temp1 = head1, *temp2 = head2;
     while (temp1 != NULL && temp2 != NULL)
@@ -57,14 +49,12 @@ node *MergeTwoSortedLL(node *head1, node *head2)
             if (outputHead == NULL)
             {
                 outputHead = temp2;
-                node *outputTail = temp2;
                 outputHead->next = NULL;
             }
             else
             {
-                node *outputTail = temp2;
-                outputTail->next = outputHead;
-                outputHead = outputTail;
+                temp2->next = outputHead;
+                outputHead = temp2;
             }
 
             temp2 = temp2->next;
@@ -74,28 +64,26 @@ node *MergeTwoSortedLL(node *head1, node *head2)
         {
             if (outputHead == NULL)
             {
-                node *outputTail = temp1;
                 outputHead = temp1;
                 outputHead->next = NULL;
             }
             else
             {
-                node *outputTail = temp1;
-                outputTail->next = outputHead;
-                outputHead = outputTail;
+                temp1->next = outputHead;
+                outputHead = temp1;
             }
             temp1 = temp1->next;
         }
     }
 
-    if (temp1 != NULL)
+    while (temp1 != NULL)
     {
         node *outputTail = temp1;
         outputTail->next = outputHead;
         outputHead = outputTail;
         temp1 = temp1->next;
     }
-    if (temp2 != NULL)
+    while (temp2 != NULL)
     {
         node *outputTail = temp2;
         outputTail->next = outputHead;

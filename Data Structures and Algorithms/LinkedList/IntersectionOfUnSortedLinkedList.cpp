@@ -111,7 +111,7 @@ Node *findIntersection(Node *head1, Node *head2)
                 ansT->next = temp1;
                 ansT = ansT->next;
             }
-            mp[temp1->data] = mp[temp1->data] - 1;
+            mp[temp1->data]--;
         }
         temp1 = temp1->next;
     }
