@@ -16,17 +16,26 @@ bool isbalanced(string str)
             {
                 return false;
             }
-            if (s.top()=='(' && str[i]==')')
+            if (str[i]==')')
             {
-                s.pop();
+                if (s.top()=='(')
+                    s.pop();
+                else
+                    return false;
             }
-            else if (str[i]=='}' && s.top()=='{')
+            else if (str[i]=='}')
             {
-                s.pop();
+                if (s.top()=='{')
+                    s.pop();
+                else
+                    return false;
             }
-            else if (str[i]==']' && s.top()=='[')
+            else if (str[i]==']')
             {
-                s.pop();
+                if (s.top()=='[')
+                    s.pop();
+                else
+                    return false;
             }
         }
     }
