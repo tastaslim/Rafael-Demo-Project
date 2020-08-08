@@ -6,6 +6,7 @@ private:
     int *arr;
     int firstIndex;
     int nextIndex;
+
 };
 int main()
 {
