@@ -1,4 +1,4 @@
-// Another name of question is next largest element to right
+// Another name of question is next largest element to left
 
 #include<iostream>
 #include<stack>

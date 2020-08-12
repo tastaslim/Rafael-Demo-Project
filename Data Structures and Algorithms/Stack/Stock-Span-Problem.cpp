@@ -1,55 +1,56 @@
-// Another name of question is next smaller element to left
+// Very famous you ca find statement anywhere just search on GFG.
+// Another name of question is next largest element to Left
 
-#include<iostream>
-#include<stack>
-#include<vector>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
 // O(n^2) approach using brute force
 
-/*vector<int> NextSmallerToLeft(int *arr, int n)
+
+/*
+int* StockSpan(int *arr, int n)
 {
-    vector<int> v;
+    int *v=new int[n];
+    int k=0;
     for (int i=0;i<n;i++)
     {
-        bool m=true;
-        for (int j=i;j>=0;j--)
+        int count=1;
+        for (int j=i-1;j>=0;j--)
         {
             if (arr[j]<arr[i])
             {
-                v.push_back(arr[j]);
-                //cout<<arr[j]<<" ";
-                m=false;
+                count++;
+            }
+            else
+            {
                 break;
             }
+
         }
-        if (m) {
-            v.push_back(-1);
-            //cout<<-1<<" ";
-        }
+        v[k++]=count;
     }
     return v;
-}*/
+}
+*/
 
 // Using stack and better one
-vector<int> NextSmallerToLeft(int *arr, int n)
+vector<int> StockSpan(int *arr, int n)
 {
     vector<int> v;
-    stack<int> s;
+    stack<pair<int, int>>s;
     for (int i=0;i<n;i++)
     {
         if (s.empty())
         {
             v.push_back(-1);
         }
-        else if (!s.empty() && s.top()<arr[i])
+        else if (!s.empty() && s.top().first>=arr[i])
         {
-            v.push_back(s.top());
+            v.push_back(s.top().second);
         }
-        else if (!s.empty() && s.top()>=arr[i])
+        else if (!s.empty() && s.top().first<arr[i])
         {
-            while (!s.empty() && s.top()>=arr[i])
+            while (!s.empty() && s.top().first<arr[i])
             {
                 s.pop();
             }
@@ -59,10 +60,15 @@ vector<int> NextSmallerToLeft(int *arr, int n)
             }
             else
             {
-                v.push_back(s.top());
+                v.push_back(s.top().second);
             }
+
         }
-        s.push(arr[i]);
+        s.push({ arr[i], i });
+    }
+    for (int i=0;i<v.size();i++)
+    {
+        v.at(i)=i-v.at(i);
     }
     return v;
 }
@@ -75,7 +81,7 @@ int main()
     {
         cin>>arr[i];
     }
-    vector<int> v=NextSmallerToLeft(arr, n);
+    vector<int>v=StockSpan(arr, n);
     for (int i=0;i<v.size();i++)
     {
         cout<<v.at(i)<<" ";

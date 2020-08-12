@@ -1,0 +1,3 @@
+Whenever it is mentioned that array is sorted always close your eyes and start thinking for Binary Search.
+Binary Search lagega hi chahe kuch bhi ho.
+Pehle linear se kr lo and then try to do it using Binary Search.
