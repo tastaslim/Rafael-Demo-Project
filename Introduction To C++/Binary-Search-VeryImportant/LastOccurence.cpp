@@ -20,14 +20,7 @@ int BS(int *arr, int size, int x)
         else
         {
             ans = mid;
-            if (arr[ans] == arr[mid + 1])
-            {
-                start = mid + 1;
-            }
-            else
-            {
-                return ans;
-            }
+            start = mid + 1;
         }
     }
     return ans;

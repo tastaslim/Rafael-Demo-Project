@@ -4,33 +4,46 @@
 using namespace std;
 int BS(int *arr, int size, int x)
 {
-    int start = 0, end = size - 1;
+    int start1 = 0, end1 = size - 1;
+    int start2 = 0, end2 = size - 1;
+    int last = -3, first = -1;
     int ans = -1;
-    while (start <= end)
+    while (start1 <= end1)
     {
-        int mid = start + ((end - start) / 2);
-        if (arr[mid] < x)
+        int mid1 = start1 + ((end1 - start1) / 2);
+        if (arr[mid1] < x)
         {
-            start = mid + 1;
+            start1 = mid1 + 1;
         }
-        else if (arr[mid] > x)
+        else if (arr[mid1] > x)
         {
-            end = mid - 1;
+            end1 = mid1 - 1;
         }
         else
         {
-            ans = mid;
-            if (arr[ans] == arr[mid + 1])
-            {
-                start = mid + 1;
-            }
-            else
-            {
-                return ans;
-            }
+            first = mid1;
+            end1 = mid1 - 1;
         }
     }
-    return ans;
+
+    while (start2 <= end2)
+    {
+        int mid2 = start2 + ((end2 - start2) / 2);
+        if (arr[mid2] < x)
+        {
+            start2 = mid2 + 1;
+        }
+        else if (arr[mid2] > x)
+        {
+            end2 = mid2 - 1;
+        }
+        else
+        {
+            last = mid2;
+            start2 = mid2 + 1;
+        }
+    }
+    return last - first + 1;
 }
 int main()
 {
