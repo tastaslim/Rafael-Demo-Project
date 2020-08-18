@@ -1,5 +1,7 @@
-// Here we have find numbe of occurence / Frequency
+//Question Statement:
+// Given a sorted non-decreasing array, we have to find number of occurence / Frequency
 // of a given number in sorted array.
+
 #include <iostream>
 using namespace std;
 int BS(int *arr, int size, int x)

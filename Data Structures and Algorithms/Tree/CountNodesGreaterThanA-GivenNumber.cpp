@@ -28,20 +28,18 @@ TreeNode<int> *takeInput()
     return root;
 }
 
-pair<TreeNode<int> *, int> HeightOfTree(TreeNode<int> *root)
+int count(TreeNode<int> *root, int value)
 {
     if (root == NULL)
     {
-        pair<TreeNode<int> *, int> p;
-        p.first = NULL;
-        p.second = 0;
-        return p;
+        return 0;
     }
 
-    int count = 0;
-    TreeNode<int> *ans = root;
+    int count = 0; // To include root
     queue<TreeNode<int> *> waiting;
     waiting.push(root);
+    if (root->data > value)
+        count = count + 1;
     while (!waiting.empty())
     {
         int temp = 0;
@@ -50,23 +48,20 @@ pair<TreeNode<int> *, int> HeightOfTree(TreeNode<int> *root)
         for (int i = 0; i < front->children.size(); i++)
         {
             waiting.push(front->children[i]);
-            temp += front->children[i]->data;
-        }
-        if (temp + front->data > count)
-        {
-            ans = front;
-            count = temp + front->data;
+            if (front->children[i]->data > value)
+            {
+                count++;
+            }
         }
     }
-    pair<TreeNode<int> *, int> p;
-    p.first = ans;
-    p.second = count;
-    return p;
+    return count;
 }
 int main()
 {
     TreeNode<int> *root = takeInput();
-    pair<TreeNode<int> *, int> ans1 = HeightOfTree(root);
-    cout << ans1.first->data << " " << ans1.second << endl;
+    int value;
+    cin >> value;
+    int ans = count(root, value);
+    cout << ans << endl;
     return 0;
 }

@@ -1,4 +1,8 @@
-//Given a tree and an integer x, find and return the number of Nodes which are greater than x.
+/*
+In a given Generic Tree, replace each node with its depth value.
+You need to just update the data of each node, 
+no need to return or print anything.
+*/
 #include "CommonTemplate.h"
 TreeNode<int> *takeInput()
 {
@@ -28,45 +32,60 @@ TreeNode<int> *takeInput()
     return root;
 }
 
-pair<TreeNode<int> *, int> HeightOfTree(TreeNode<int> *root)
+void ReplaceNodeWithDepthOfTree(TreeNode<int> *root)
 {
-    if (root == NULL)
-    {
-        pair<TreeNode<int> *, int> p;
-        p.first = NULL;
-        p.second = 0;
-        return p;
-    }
-
-    int count = 0;
     TreeNode<int> *ans = root;
+    root->data = 0;
     queue<TreeNode<int> *> waiting;
     waiting.push(root);
     while (!waiting.empty())
     {
-        int temp = 0;
         TreeNode<int> *front = waiting.front();
         waiting.pop();
         for (int i = 0; i < front->children.size(); i++)
         {
             waiting.push(front->children[i]);
-            temp += front->children[i]->data;
-        }
-        if (temp + front->data > count)
-        {
-            ans = front;
-            count = temp + front->data;
+            front->children[i]->data = front->data + 1;
         }
     }
-    pair<TreeNode<int> *, int> p;
-    p.first = ans;
-    p.second = count;
-    return p;
+}
+
+// Method 2
+/*
+void ReplaceNodeWithDepthOfTree(TreeNode<int> *root, int depth)
+{
+    root->data = depth;
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        ReplaceNodeWithDepthOfTree(root->children[i], depth + 1);
+    }
+}
+void ReplaceNodeWithDepthOfTree(TreeNode<int> *root)
+{
+    ReplaceNodeWithDepthOfTree(root, 0);
+}
+*/
+void print(TreeNode<int> *root)
+{
+    queue<TreeNode<int> *> waiting;
+    waiting.push(root);
+    while (!waiting.empty())
+    {
+        TreeNode<int> *front = waiting.front();
+        cout << front->data << ":";
+        waiting.pop();
+        for (int i = 0; i < front->children.size(); i++)
+        {
+            cout << front->children[i]->data << ",";
+            waiting.push(front->children[i]);
+        }
+        cout << endl;
+    }
 }
 int main()
 {
     TreeNode<int> *root = takeInput();
-    pair<TreeNode<int> *, int> ans1 = HeightOfTree(root);
-    cout << ans1.first->data << " " << ans1.second << endl;
+    ReplaceNodeWithDepthOfTree(root);
+    print(root);
     return 0;
 }

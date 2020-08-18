@@ -1,4 +1,10 @@
-//Given a tree and an integer x, find and return the number of Nodes which are greater than x.
+/*
+Given a generic tree and an integer n. Find and return the node 
+with next larger element in the Tree i.e. 
+find a node with value just greater than n.
+Return NULL if no node is present with the value greater than n.
+*/
+
 #include "CommonTemplate.h"
 TreeNode<int> *takeInput()
 {
@@ -28,45 +34,45 @@ TreeNode<int> *takeInput()
     return root;
 }
 
-pair<TreeNode<int> *, int> HeightOfTree(TreeNode<int> *root)
+TreeNode<int> *count(TreeNode<int> *root, int value)
 {
     if (root == NULL)
     {
-        pair<TreeNode<int> *, int> p;
-        p.first = NULL;
-        p.second = 0;
-        return p;
+        return 0;
     }
-
-    int count = 0;
-    TreeNode<int> *ans = root;
     queue<TreeNode<int> *> waiting;
+    TreeNode<int> *ans = root;
     waiting.push(root);
+    if (root->data > value)
+        ans = root;
+    bool m = true;
+
     while (!waiting.empty())
     {
-        int temp = 0;
         TreeNode<int> *front = waiting.front();
         waiting.pop();
         for (int i = 0; i < front->children.size(); i++)
         {
             waiting.push(front->children[i]);
-            temp += front->children[i]->data;
-        }
-        if (temp + front->data > count)
-        {
-            ans = front;
-            count = temp + front->data;
+            if (front->children[i]->data > value && m)
+            {
+                ans = front->children[i];
+                m = false;
+            }
+            else if (front->children[i]->data < ans->data && front->children[i]->data > value)
+            {
+                ans = front->children[i];
+            }
         }
     }
-    pair<TreeNode<int> *, int> p;
-    p.first = ans;
-    p.second = count;
-    return p;
+    return ans;
 }
 int main()
 {
     TreeNode<int> *root = takeInput();
-    pair<TreeNode<int> *, int> ans1 = HeightOfTree(root);
-    cout << ans1.first->data << " " << ans1.second << endl;
+    int value;
+    cin >> value;
+    TreeNode<int> *ans = count(root, value);
+    cout << ans->data << endl;
     return 0;
 }

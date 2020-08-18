@@ -1,5 +1,5 @@
-//Given a tree and an integer x, find and return the number of Nodes which are greater than x.
 #include "CommonTemplate.h"
+
 TreeNode<int> *takeInput()
 {
     int value;
@@ -28,7 +28,7 @@ TreeNode<int> *takeInput()
     return root;
 }
 
-pair<TreeNode<int> *, int> HeightOfTree(TreeNode<int> *root)
+pair<TreeNode<int> *, int> NodeWithMaxChildSumIncludingItself(TreeNode<int> *root)
 {
     if (root == NULL)
     {
@@ -63,10 +63,11 @@ pair<TreeNode<int> *, int> HeightOfTree(TreeNode<int> *root)
     p.second = count;
     return p;
 }
+
 int main()
 {
     TreeNode<int> *root = takeInput();
-    pair<TreeNode<int> *, int> ans1 = HeightOfTree(root);
+    pair<TreeNode<int> *, int> ans1 = NodeWithMaxChildSumIncludingItself(root);
     cout << ans1.first->data << " " << ans1.second << endl;
     return 0;
 }

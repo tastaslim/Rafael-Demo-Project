@@ -1,5 +1,5 @@
 // If element exists our ceil would be that element only but if
-// it does not exist in array ceil would smallest integer which is larger
+// it does not exist in array ceil would be smallest integer which is larger
 // than my given value to search
 //{1,2,3,6,9,14,15} x=9 ----> Ceil===>9
 //{1,2,3,6,9,14,15} x=4 -----> Ceil===>6

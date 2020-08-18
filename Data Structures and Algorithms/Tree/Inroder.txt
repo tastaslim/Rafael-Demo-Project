@@ -1,0 +1,4 @@
+Since It is a generic tree hence there is no concept of Inorder concept here.
+Because in generic tree a node can have as many as child henece we can't decide which one is left child and which one is right child.
+
+We will see this type of traversal in Binary tree and Binary search tree.
