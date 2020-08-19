@@ -41,8 +41,7 @@ BinaryTreeNode<int> *takeInput()
 }
 
 // Using BFS --->> Queue
-/*
- TODO
+
 void MirrorTree(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
@@ -53,15 +52,20 @@ void MirrorTree(BinaryTreeNode<int> *root)
     {
         BinaryTreeNode<int> *front = waiting.front();
         waiting.pop();
-        if(front->left)
+        if (front->left)
         {
-
+            waiting.push(front->left);
         }
+        if (front->right)
+        {
+            waiting.push(front->right);
+        }
+        swap(front->left, front->right);
     }
 }
-*/
 // Using recursion
 
+/*
 void MirrorTree(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
@@ -70,7 +74,7 @@ void MirrorTree(BinaryTreeNode<int> *root)
     MirrorTree(root->left);
     MirrorTree(root->right);
 }
-
+*/
 void print(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
