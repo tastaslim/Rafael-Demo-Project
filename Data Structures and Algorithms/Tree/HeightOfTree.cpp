@@ -38,8 +38,7 @@ int HeightOfTree(TreeNode<int> *root)
     for (int i = 0; i < root->children.size(); i++)
     {
         int k = HeightOfTree(root->children[i]);
-        if (k > count)
-            count = k;
+        count = max(k, count);
     }
     return count + 1;
 }
