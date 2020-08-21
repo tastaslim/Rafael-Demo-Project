@@ -53,7 +53,6 @@ bool isBalanced(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
         return true;
-    int sum = 0;
     int h1 = height(root->left);
     int h2 = height(root->right);
     int ans = h1 - h2;
