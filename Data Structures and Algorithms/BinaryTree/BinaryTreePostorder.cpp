@@ -38,6 +38,7 @@ BinaryTreeNode<int> *takeInput()
 
 // Using recursion ---> DFS
 
+/*
 void Postorder(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
@@ -46,6 +47,38 @@ void Postorder(BinaryTreeNode<int> *root)
     Postorder(root->right);
     cout << root->data << " ";
 }
+*/
+
+// Using BFS--> Iterative
+void Postorder(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+        return;
+    stack<BinaryTreeNode<int> *> s1;
+    s1.push(root);
+    stack<BinaryTreeNode<int> *> s2;
+    while (!s1.empty())
+    {
+        BinaryTreeNode<int> *topper = s1.top();
+        s2.push(topper);
+        s1.pop();
+        if (topper->left)
+        {
+            s1.push(topper->left);
+        }
+        if (topper->right)
+        {
+            s1.push(topper->right);
+        }
+    }
+
+    while (!s2.empty())
+    {
+        cout << s2.top()->data << " ";
+        s2.pop();
+    }
+}
+
 int main()
 {
     BinaryTreeNode<int> *root = takeInput();
