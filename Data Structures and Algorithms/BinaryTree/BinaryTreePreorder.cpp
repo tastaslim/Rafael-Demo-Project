@@ -38,17 +38,61 @@ BinaryTreeNode<int> *takeInput()
 
 // Using recursion ---> DFS
 
-void Preorder(BinaryTreeNode<int> *root)
+/*
+void PreorderTraversal(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
         return;
     cout << root->data << " ";
-    Preorder(root->left);
-    Preorder(root->right);
+    PreorderTraversal(root->left);
+    PreorderTraversal(root->right);
 }
+*/
+
+// Using BFS LevelWise
+void PreorderTraversal(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+        return;
+
+    stack<BinaryTreeNode<int> *> s1;
+    stack<BinaryTreeNode<int> *> s2;
+    cout << root->data << " ";
+    s1.push(root);
+    while (!s1.empty())
+    {
+        BinaryTreeNode<int> *topper = s1.top();
+        s1.pop();
+        if (topper->left)
+        {
+            s1.push(topper->left);
+            cout << topper->left->data << " ";
+        }
+        if (topper->right)
+        {
+            s2.push(topper->right);
+        }
+    }
+
+    while (!s2.empty())
+    {
+        BinaryTreeNode<int> *topper = s2.top();
+        s2.pop();
+        cout << topper->data << " ";
+        if (topper->right)
+        {
+            s2.push(topper->right);
+        }
+        if (topper->left)
+        {
+            s2.push(topper->left);
+        }
+    }
+}
+
 int main()
 {
     BinaryTreeNode<int> *root = takeInput();
-    Preorder(root);
+    PreorderTraversal(root);
     delete root;
 }
