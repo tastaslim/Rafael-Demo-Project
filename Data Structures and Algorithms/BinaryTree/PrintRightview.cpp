@@ -36,6 +36,7 @@ BinaryTreeNode<int> *takeInput()
     return root;
 }
 
+// Method 1
 vector<int> rightSideView(BinaryTreeNode<int> *root)
 {
     vector<int> v;
@@ -75,6 +76,43 @@ vector<int> rightSideView(BinaryTreeNode<int> *root)
     return v;
 }
 
+//Method 2
+
+/*
+vector<int> rightSideView(BinaryTreeNode<int> *root)
+{
+    vector<int> v;
+    if (root == NULL)
+        return v;
+    queue<BinaryTreeNode<int> *> q;
+    q.push(root);
+    while (!q.empty())
+    {
+        int n = q.size();
+        while (n != 0)
+        {
+            BinaryTreeNode<int> *front = q.front();
+            if (n == 1)
+            {
+                v.push_back(front->data);
+            }
+            q.pop();
+
+            if (front->left)
+            {
+                q.push(front->left);
+            }
+
+            if (front->right)
+            {
+                q.push(front->right);
+            }
+            n--;
+        }
+    }
+    return v;
+}
+*/
 int main()
 {
     BinaryTreeNode<int> *root = takeInput();
