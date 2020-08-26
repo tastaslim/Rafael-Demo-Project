@@ -50,7 +50,7 @@ bool isBST(BinaryTreeNode<int> *root)
 */
 
 // Method 2 O(n) approach using pairs
-
+/*
 pairT helper(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
@@ -86,17 +86,29 @@ bool isBST(BinaryTreeNode<int> *root)
         return true;
     pairT p = helper(root);
     return p.check;
-}
-bool isBST(BinaryTreeNode<int> *root, int minimum = INT_MIN, int maximum = INT_MAX)
+}*/
+
+//Method 3 ---> Best easiest and efficient
+bool isBST(BinaryTreeNode<int> *root, int minimum, int maximum)
 {
     if (root == NULL)
         return true;
+    if (root->data > maximum || root->data < minimum)
+        return false;
+    bool isLeftOk = isBST(root->left, minimum, root->data - 1);
+    bool isRightOk = isBST(root->right, root->data, maximum);
+    return isLeftOk && isRightOk;
+}
+
+bool isBST(BinaryTreeNode<int> *root)
+{
+    return isBST(root, INT_MIN, INT_MAX);
 }
 
 int main()
 {
     BinaryTreeNode<int> *root = takeInput();
-    bool m = isBST(root, INT_MIN, INT_MAX);
+    bool m = isBST(root);
     if (m)
         cout << "Binary tree is Binary Search Tree";
     else
